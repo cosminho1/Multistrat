@@ -2,6 +2,16 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="MSD">
 		<jta-data-source>java:jboss/datasources/ORCLFeaaMSD</jta-data-source>
+		<class>org.app.service.entities.Angajat</class>
+		<class>org.app.service.entities.Client</class>
+		<class>org.app.service.entities.Contract</class>
+		<class>org.app.service.entities.Echipa</class>
+		<class>org.app.service.entities.Furnizor</class>
+		<class>org.app.service.entities.Garantie</class>
+		<class>org.app.service.entities.Licenta</class>
+		<class>org.app.service.entities.Produs</class>
+		<class>org.app.service.entities.Suport</class>
+		<class>org.app.service.entities.TipEchipa</class>
 		<!-- <provider>oracle.jdbc.xa.OracleXADataSource</provider> -->
 		
       <properties>
