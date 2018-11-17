@@ -1,7 +1,13 @@
 package org.app.service.entities;
+import java.io.Serializable;
+
 import javax.persistence.*;
 @Entity
-public class TipEchipa {
+public class TipEchipa implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idTipEchipa;
@@ -10,9 +16,8 @@ public class TipEchipa {
 	public TipEchipa() {
 		super();
 	}
-	public TipEchipa(int idTipEchipa, String descriere, String departament) {
+	public TipEchipa(String descriere, String departament) {
 		super();
-		this.idTipEchipa = idTipEchipa;
 		this.descriere = descriere;
 		this.departament = departament;
 	}

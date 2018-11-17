@@ -1,9 +1,15 @@
 package org.app.service.entities;
 import javax.persistence.*;
 import static javax.persistence.CascadeType.ALL;
+
+import java.io.Serializable;
 @Entity
-public class Angajat {
-    @Id
+public class Angajat implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
 	@GeneratedValue
 	private int idAngajat;
 	private String nume;
@@ -14,9 +20,6 @@ public class Angajat {
 	private Echipa echipa;
 	public int getIdAngajat() {
 		return idAngajat;
-	}
-	public void setIdAngajat(int idAngajat) {
-		this.idAngajat = idAngajat;
 	}
 	public String getNume() {
 		return nume;
@@ -43,14 +46,12 @@ public class Angajat {
 		this.mail = mail;
 	}
 	
-	public Angajat(int idAngajat, String nume, String adresa, String telefon, String mail, Echipa echipa) {
+	public Angajat(String nume, String adresa, String telefon, String mail) {
 		super();
-		this.idAngajat = idAngajat;
 		this.nume = nume;
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.mail = mail;
-		this.echipa = echipa;
 	}
 	@Override
 	public int hashCode() {

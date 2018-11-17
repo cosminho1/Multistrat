@@ -1,16 +1,21 @@
 package org.app.service.entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 @Entity
-public class Echipa {
+public class Echipa implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idEchipa;
 	private String denumire;
 	private String specializare;
-	@OneToOne
+	@ManyToOne
 	private TipEchipa tipEchipa;
 	@OneToMany(mappedBy="echipa")
 	private List <Angajat> angajati = new ArrayList<Angajat>();
@@ -27,13 +32,11 @@ public class Echipa {
 	public void setTipEchipa(TipEchipa tipEchipa) {
 		this.tipEchipa = tipEchipa;
 	}
-	public Echipa(int idEchipa, String denumire, String specializare, TipEchipa tipEchipa, List<Angajat> angajati) {
+	public Echipa(String denumire, String specializare, TipEchipa tipEchipa) {
 		super();
-		this.idEchipa = idEchipa;
 		this.denumire = denumire;
 		this.specializare = specializare;
 		this.tipEchipa = tipEchipa;
-		this.angajati = angajati;
 	}
 	public int getIdEchipa() {
 		return idEchipa;

@@ -1,7 +1,13 @@
 package org.app.service.entities;
+import java.io.Serializable;
+
 import javax.persistence.*;
 @Entity
-public class Contract {
+public class Contract implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idContract;
@@ -116,16 +122,16 @@ public class Contract {
 			return false;
 		return true;
 	}
-	public Contract(int idContract, Client client, String descriere, Produs produs, Garantie garantie,
-			Angajat angajatResponsabil, Furnizor furnizor) {
+	public Contract(Client client, String descriere, Produs produs, Garantie garantie,
+			Angajat angajatResponsabil, Furnizor furnizor, Suport suport) {
 		super();
-		this.idContract = idContract;
 		this.client = client;
 		this.descriere = descriere;
 		this.produs = produs;
 		this.garantie = garantie;
 		this.angajatResponsabil = angajatResponsabil;
 		this.furnizor = furnizor;
+		this.suport = suport;
 	}
 	public Contract() {
 		super();

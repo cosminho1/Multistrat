@@ -1,15 +1,20 @@
 package org.app.service.entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 @Entity
-public class Suport {
+public class Suport implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idSuport;
 	@OneToMany(mappedBy="suport")
-	private List<Contract> contract = new ArrayList<Contract>();
+	private List<Contract> contracte = new ArrayList<Contract>();
 	@ManyToOne
 	private TipEchipa tipEchipa;
 	private String descriere;
@@ -20,10 +25,10 @@ public class Suport {
 		this.idSuport = idSuport;
 	}
 	public List<Contract> getContract() {
-		return contract;
+		return contracte;
 	}
-	public void setContract(List<Contract> contract) {
-		this.contract = contract;
+	public void setContract(List<Contract> contracte) {
+		this.contracte = contracte;
 	}
 	public TipEchipa getTipEchipa() {
 		return tipEchipa;
@@ -41,12 +46,13 @@ public class Suport {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((contract == null) ? 0 : contract.hashCode());
+		result = prime * result + ((contracte == null) ? 0 : contracte.hashCode());
 		result = prime * result + ((descriere == null) ? 0 : descriere.hashCode());
 		result = prime * result + idSuport;
 		result = prime * result + ((tipEchipa == null) ? 0 : tipEchipa.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -56,10 +62,10 @@ public class Suport {
 		if (getClass() != obj.getClass())
 			return false;
 		Suport other = (Suport) obj;
-		if (contract == null) {
-			if (other.contract != null)
+		if (contracte == null) {
+			if (other.contracte != null)
 				return false;
-		} else if (!contract.equals(other.contract))
+		} else if (!contracte.equals(other.contracte))
 			return false;
 		if (descriere == null) {
 			if (other.descriere != null)
@@ -75,10 +81,8 @@ public class Suport {
 			return false;
 		return true;
 	}
-	public Suport(int idSuport, List<Contract> contract, TipEchipa tipEchipa, String descriere) {
+	public Suport(TipEchipa tipEchipa, String descriere) {
 		super();
-		this.idSuport = idSuport;
-		this.contract = contract;
 		this.tipEchipa = tipEchipa;
 		this.descriere = descriere;
 	}

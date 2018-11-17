@@ -1,7 +1,13 @@
 package org.app.service.entities;
+import java.io.Serializable;
+
 import javax.persistence.*;
 @Entity
-public class Licenta {
+public class Licenta implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idLicenta;
@@ -71,9 +77,8 @@ public class Licenta {
 			return false;
 		return true;
 	}
-	public Licenta(int idLicenta, String descriere, String tipLicenta, Produs produs) {
+	public Licenta(String descriere, String tipLicenta, Produs produs) {
 		super();
-		this.idLicenta = idLicenta;
 		this.descriere = descriere;
 		this.tipLicenta = tipLicenta;
 		this.produs = produs;

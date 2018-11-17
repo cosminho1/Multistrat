@@ -1,10 +1,15 @@
 package org.app.service.entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 @Entity
-public class Garantie {
+public class Garantie implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idGarantie;
@@ -74,12 +79,10 @@ public class Garantie {
 			return false;
 		return true;
 	}
-	public Garantie(int idGarantie, String descriere, String durata, List<Contract> contract) {
+	public Garantie(String descriere, String durata) {
 		super();
-		this.idGarantie = idGarantie;
 		this.descriere = descriere;
 		this.durata = durata;
-		this.contract = contract;
 	}
 	public Garantie() {
 		super();

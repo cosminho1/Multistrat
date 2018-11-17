@@ -1,7 +1,13 @@
 package org.app.service.entities;
+import java.io.Serializable;
+
 import javax.persistence.*;
 @Entity
-public class Furnizor {
+public class Furnizor implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idFurnizor;
@@ -96,9 +102,8 @@ public class Furnizor {
 			return false;
 		return true;
 	}
-	public Furnizor(int idFurnizor, String denumire, String telefon, String adresa, String mail, String cui) {
+	public Furnizor(String denumire, String telefon, String adresa, String mail, String cui) {
 		super();
-		this.idFurnizor = idFurnizor;
 		this.denumire = denumire;
 		this.telefon = telefon;
 		this.adresa = adresa;

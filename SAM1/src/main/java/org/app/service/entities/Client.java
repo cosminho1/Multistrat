@@ -1,10 +1,15 @@
 package org.app.service.entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 @Entity
-public class Client {
+public class Client implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idClient;
@@ -113,16 +118,13 @@ public class Client {
 			return false;
 		return true;
 	}
-	public Client(int idClient, String denumire, String telefon, String adresa, String mail, String cui,
-			List<Contract> contracte) {
+	public Client(String denumire, String telefon, String adresa, String mail, String cui) {
 		super();
-		this.idClient = idClient;
 		this.denumire = denumire;
 		this.telefon = telefon;
 		this.adresa = adresa;
 		this.mail = mail;
 		this.cui = cui;
-		this.contracte = contracte;
 	}
 	public Client() {
 		super();

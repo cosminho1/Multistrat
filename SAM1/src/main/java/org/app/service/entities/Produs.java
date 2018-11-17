@@ -1,10 +1,15 @@
 package org.app.service.entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 @Entity
-public class Produs {
+public class Produs implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int idProdus;
@@ -29,11 +34,9 @@ public class Produs {
 	public void setLicente(List<Licenta> licente) {
 		this.licente = licente;
 	}
-	public Produs(int idProdus, String denumire, List<Licenta> licente) {
+	public Produs(String denumire) {
 		super();
-		this.idProdus = idProdus;
 		this.denumire = denumire;
-		this.licente = licente;
 	}
 	public Produs() {
 		super();
