@@ -1,7 +1,5 @@
 package org.app.service.entities;
 import javax.persistence.*;
-import static javax.persistence.CascadeType.ALL;
-
 import java.io.Serializable;
 @Entity
 public class Angajat implements Serializable {
