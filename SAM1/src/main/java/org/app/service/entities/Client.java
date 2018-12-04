@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement(name="client")
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class Client implements Serializable {
 	/**
@@ -18,44 +24,51 @@ public class Client implements Serializable {
 	private String adresa;
 	private String mail;
 	private String cui;
-	@OneToMany(mappedBy="client")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade = CascadeType.ALL)
 	private List <Contract> contracte = new ArrayList<Contract>();
+	@XmlElement
 	public int getIdClient() {
 		return idClient;
 	}
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
+	@XmlElement
 	public String getDenumire() {
 		return denumire;
 	}
 	public void setDenumire(String denumire) {
 		this.denumire = denumire;
 	}
+	@XmlElement
 	public String getTelefon() {
 		return telefon;
 	}
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
+	@XmlElement
 	public String getAdresa() {
 		return adresa;
 	}
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
+	@XmlElement
 	public String getMail() {
 		return mail;
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+	@XmlElement
 	public String getCui() {
 		return cui;
 	}
 	public void setCui(String cui) {
 		this.cui = cui;
 	}
+	@XmlElement
 	public List<Contract> getContracte() {
 		return contracte;
 	}

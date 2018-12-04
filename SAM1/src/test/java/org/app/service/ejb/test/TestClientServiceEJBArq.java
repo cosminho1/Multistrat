@@ -102,7 +102,7 @@ public class TestClientServiceEJBArq {
 		
 		Collection<Client> clients = service.getClients();
 		for (Client c: clients) {
-			service.removeClient(c);
+			service.removeClient(c.getIdClient());
 		}
 		Collection<Client> clientsAfterRemove = service.getClients();
 		

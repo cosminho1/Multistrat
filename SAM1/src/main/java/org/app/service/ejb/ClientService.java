@@ -12,7 +12,7 @@ public interface ClientService {
 	Client addClient(Client clientToAdd);
 	
 	// DELETE
-	String removeClient(Client clientToDelete);
+	String removeClient(Integer id);
 	
 	// READ
 	Client getClientByClientAdresa(String adresa);
