@@ -38,6 +38,8 @@ public class AngajatServiceEJB implements AngajatService {
 	
 	@DELETE @Path("/delete/{id}")
 	@Override
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public String removeAngajat(@PathParam("id") Integer id) {
 		TypedQuery<Angajat> query =  em.createQuery("SELECT c FROM Angajat c WHERE c.idAngajat = :id ", Angajat.class);
 		query.setParameter("id", id);
@@ -52,6 +54,8 @@ public class AngajatServiceEJB implements AngajatService {
 	
 	@GET @Path("/adresa/{address}")
 	@Override
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Angajat getAngajatByAngajatAdresa(@PathParam("address") String adresa) {
 		TypedQuery<Angajat> query =  em.createQuery("SELECT c FROM Angajat c WHERE c.adresa = :adresa ", Angajat.class);
 		query.setParameter("adresa", adresa);
@@ -61,6 +65,7 @@ public class AngajatServiceEJB implements AngajatService {
 	
 	@Override
 	@GET @Path("/all")
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Collection<Angajat> getAngajati() {
 		List<Angajat> angajati = em.createQuery("SELECT c FROM Angajat c", Angajat.class).getResultList();
@@ -69,6 +74,8 @@ public class AngajatServiceEJB implements AngajatService {
 
 	@GET @Path("/nume/{name}")
 	@Override
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Angajat getAngajatByNume(@PathParam("name") String angajatNume) {
 		TypedQuery<Angajat> query =  em.createQuery("SELECT c FROM Angajat c WHERE c.nume = :angajatNume ", Angajat.class);
 		query.setParameter("angajatNume", angajatNume);

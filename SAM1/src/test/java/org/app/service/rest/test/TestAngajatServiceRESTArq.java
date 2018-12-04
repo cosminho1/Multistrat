@@ -2,6 +2,7 @@ package org.app.service.rest.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
@@ -57,49 +58,67 @@ public class TestAngajatServiceRESTArq {
 	                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 	
-	private void testareAll() {
+	
+	private Collection<Angajat> testareAll() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(serviceURL + "/all");
 		target.request().accept(MediaType.APPLICATION_XML);
         Response response = target.request().get();
-        String value = response.readEntity(String.class);
+        Collection<Angajat> value = response.readEntity(new GenericType<Collection<Angajat>>(){});
         response.close();
         
-        String str = "REST Response >>>>>>>>> " + value;
+        String str = "REST Response >>>>>>>>> " + value.toString();
         System.out.println(str);
+        
+        assertTrue("Verificare size collection<angajat>.", value.size() > 0);
+        
+        return value;
 	}
 	
 	private void testareGetNume() {
+		Collection<Angajat> angajati = testareAll();
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(serviceURL + "/nume/Nume_25");
+		Angajat angajatToFind = angajati.stream().findFirst().get();
+		WebTarget target = client.target(serviceURL + "/nume/" + angajatToFind.getNume());
 		target.request().accept(MediaType.APPLICATION_XML);
         Response response = target.request().get();
-        String value = response.readEntity(String.class);
+        Angajat value = response.readEntity(new GenericType<Angajat>(){});
         response.close(); 
         
         System.out.println("REST Response >>>>>>>>> " + value);
+        
+        assertTrue("Verificare get nume.", value.getNume().equals(angajatToFind.getNume()));
 	}
 	
 	private void testareGetAdresa() {
+		Collection<Angajat> angajati = testareAll();
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(serviceURL + "/adresa/Adresa_25");
+		Angajat angajatToFind = angajati.stream().findFirst().get();
+		WebTarget target = client.target(serviceURL + "/adresa/" + angajatToFind.getAdresa());
 		target.request().accept(MediaType.APPLICATION_XML);
         Response response = target.request().get();
-        String value = response.readEntity(String.class);
+        Angajat value = response.readEntity(new GenericType<Angajat>(){});
         response.close(); 
         
         System.out.println("REST Response >>>>>>>>> " + value);
+        
+        assertTrue("Verificare get adresa.", value.getAdresa().equals(angajatToFind.getAdresa()));
 	}
 	
 	private void testareRemoveAngajat() {
+		Collection<Angajat> angajati = testareAll();
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(serviceURL + "/delete/8905");
+		Angajat angajatToRemove = angajati.stream().findFirst().get();
+		WebTarget target = client.target(serviceURL + "/delete/" + angajatToRemove.getIdAngajat());
 		target.request().accept(MediaType.APPLICATION_XML);
-        Response response = target.request().get();
+		
+        Response response = target.request().delete();
         String value = response.readEntity(String.class);
         response.close(); 
         
         System.out.println("REST Response >>>>>>>>> " + value);
+        
+        assertTrue("Verificare remove angajat", true);
 	}
 	
 	private void testareAddAngajat() {
@@ -108,10 +127,17 @@ public class TestAngajatServiceRESTArq {
 		target.request().accept(MediaType.APPLICATION_XML);
 		Angajat angajat = new Angajat("nume", "adresa", "telefon", "mail");
         Response response = target.request().post(Entity.entity(angajat, MediaType.APPLICATION_XML));
-        String value = response.readEntity(String.class);
+        Angajat value = response.readEntity(new GenericType<Angajat>(){});
         response.close(); 
         
         System.out.println("REST Response >>>>>>>>> " + value);
+        
+        assertTrue("Verificare add Angajat.", value.getAdresa().equals("adresa"));
+	}
+	
+	@Test
+	public void testAddAngajat() {
+		testareAddAngajat();
 	}
 	
 	@Test
@@ -133,9 +159,5 @@ public class TestAngajatServiceRESTArq {
 	public void testRemoveAngajat() {
 		testareRemoveAngajat();
 	}
-	
-	@Test
-	public void testAddAngajat() {
-		testareAddAngajat();
-	}
+
 }
