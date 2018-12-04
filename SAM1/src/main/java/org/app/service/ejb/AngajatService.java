@@ -12,7 +12,7 @@ public interface AngajatService {
 	Angajat addAngajat(Angajat angajatToAdd);
 	
 	// DELETE
-	String removeAngajat(Angajat angajatToDelete);
+	String removeAngajat(Integer id);
 	
 	// READ
 	Angajat getAngajatByAngajatAdresa(String adresa);

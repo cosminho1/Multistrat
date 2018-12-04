@@ -1,6 +1,13 @@
 package org.app.service.entities;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.io.Serializable;
+@XmlRootElement(name="angajat")
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class Angajat implements Serializable {
     /**
@@ -16,27 +23,32 @@ public class Angajat implements Serializable {
 	private String mail;
 	@ManyToOne
 	private Echipa echipa;
+	@XmlElement
 	public int getIdAngajat() {
 		return idAngajat;
 	}
+	@XmlElement
 	public String getNume() {
 		return nume;
 	}
 	public void setNume(String nume) {
 		this.nume = nume;
 	}
+	@XmlElement
 	public String getAdresa() {
 		return adresa;
 	}
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
+	@XmlElement
 	public String getTelefon() {
 		return telefon;
 	}
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
+	@XmlElement
 	public String getMail() {
 		return mail;
 	}
@@ -71,6 +83,7 @@ public class Angajat implements Serializable {
 			return false;
 		return true;
 	}
+	@XmlElement
 	public Echipa getEchipa() {
 		return echipa;
 	}

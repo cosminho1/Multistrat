@@ -72,7 +72,7 @@ public class TestEchipaServiceEJBArq {
 		addEchipe(echipeToAdd);
 		Collection<Echipa> echipe = service.getEchipe();
 		
-		assertTrue("Fail to add echipe", echipe.size() == echipeToAdd);
+		assert echipe.size() == echipeToAdd;
 	}
 	
 	@Test
@@ -81,9 +81,7 @@ public class TestEchipaServiceEJBArq {
 		logger.info("DEBUG: Junit TESTING: testGetEchipe ...");
 		
 		List<Echipa> echipe = (List<Echipa>) service.getEchipe();
-	//	throw new RuntimeException("" + echipe.size());
 		assert echipe.size() == 5;
-		//assertTrue("Fail to read echipe!", echipe.size() == 0);
 	}
 	
 	@Test

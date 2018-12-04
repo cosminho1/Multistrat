@@ -100,7 +100,7 @@ public class TestAngajatServiceEJBArq {
 		
 		Collection<Angajat> angajati = service.getAngajati();
 		for (Angajat c: angajati) {
-			service.removeAngajat(c);
+			service.removeAngajat(c.getIdAngajat());
 		}
 		Collection<Angajat> angajatiAfterRemove = service.getAngajati();
 		
